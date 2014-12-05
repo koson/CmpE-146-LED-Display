@@ -56,7 +56,7 @@ int main(void)
      * control codes can be learned by typing "learn" command.
      */
     Uart3 &u3 = Uart3::getInstance();
-    u3.init(9600, 512, 512);
+    u3.init(115200, 1120, 1120);
     scheduler_add_task(new wifiReceiver(Uart3::getInstance(), PRIORITY_MEDIUM ) );
 #if 0
     scheduler_add_task(new terminalTask(PRIORITY_HIGH));
