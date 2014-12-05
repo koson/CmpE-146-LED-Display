@@ -16,18 +16,22 @@ bool wifiReceiver::run( void *vParams ) {
     const char * psFont[3] = { "Consola", "Courier", "FixedSys" };
     const char * psColor[8] =
         { "Black", "Blue", "Green", "Cyan", "Red", "Pink", "Yellow", "White" };
-    const char * psBackground[8] =
-        { "Black", "Blue", "Green", "Cyan", "Red", "Pink", "Yellow", "White" };
 
     char * cRxChar = new char();
 
     for(;;) {
         if ( xBeeWifi.getChar( cRxChar, portMAX_DELAY ) ) {
+            printf( "Font: " );
             printf( psFont[atoi( cRxChar )] );
+            printf("\r\n");
             xBeeWifi.getChar( cRxChar, portMAX_DELAY );
+            printf( "Text color: " );
             printf( psColor[atoi( cRxChar )] );
+            printf("\r\n");
             xBeeWifi.getChar( cRxChar, portMAX_DELAY );
-            printf( psBackground[atoi( cRxChar )] );
+            printf( "Background color: " );
+            printf( psColor[atoi( cRxChar )] );
+            printf("\r\n");
 
             while( 0 < xBeeWifi.getRxQueueSize() ) {
                 xBeeWifi.getChar( cRxChar, portMAX_DELAY );
